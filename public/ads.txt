@@ -1,0 +1,7 @@
+# ads.txt — Authorized Digital Sellers
+#
+# Replace pub-0000000000000000 with your real AdSense publisher ID (the digits
+# after "ca-" in your ca-pub-XXXX string) and uncomment the line below.
+# See CHECKLIST.md.
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
