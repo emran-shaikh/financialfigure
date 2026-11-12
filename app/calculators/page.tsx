@@ -16,6 +16,7 @@ export default function CalculatorsDirectory() {
     <PageShell
       title="All calculators"
       crumbs={[{ href: "/calculators", label: "All calculators" }]}
+      adSlotId="directory-footer"
       intro={
         <p>
           {CALCULATORS.length} free calculators covering the money decisions most US households face.

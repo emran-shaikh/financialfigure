@@ -17,6 +17,7 @@ export default function LoansPage() {
     <PageShell
       title="Loans & debt calculators"
       crumbs={[{ href: "/loans", label: "Loans" }]}
+      adSlotId="category-loans-footer"
       intro={
         <p>
           Borrowing costs less when you know the numbers before you sign. These calculators cover the

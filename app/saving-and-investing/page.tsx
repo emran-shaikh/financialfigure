@@ -17,6 +17,7 @@ export default function SavingAndInvestingPage() {
     <PageShell
       title="Saving & investing calculators"
       crumbs={[{ href: "/saving-and-investing", label: "Saving & investing" }]}
+      adSlotId="category-investing-footer"
       intro={
         <p>
           Small, consistent contributions plus time are the two levers that matter most. These

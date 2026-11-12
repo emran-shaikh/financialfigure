@@ -21,6 +21,7 @@ export default function SalaryAfterTaxIndex() {
       title="Paycheck calculator by state"
       updated="2026-11-12"
       crumbs={[{ href: "/salary-after-tax", label: "Paycheck by state" }]}
+      adSlotId="state-index-footer"
       intro={
         <p>
           Your take-home pay depends on where you live as much as on what you earn. Pick a state to see
