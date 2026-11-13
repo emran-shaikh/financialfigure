@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import OnlineCounter from "@/components/OnlineCounter";
 import { CALCULATORS, CATEGORIES } from "@/lib/calculators";
 import { FOOTER_LEGAL_LINKS, SITE } from "@/lib/site";
 
@@ -7,8 +9,16 @@ export default function SiteFooter() {
     <footer className="mt-16 border-t border-slate-200 bg-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-base font-semibold text-teal-900">{SITE.name}</p>
-          <p className="mt-2 text-sm text-slate-600">{SITE.tagline}.</p>
+          <Link href="/" aria-label={`${SITE.name} home`}>
+            <Image
+              src="/logo.png"
+              alt={SITE.name}
+              width={1776}
+              height={608}
+              className="h-17 w-auto"
+            />
+          </Link>
+          <p className="mt-3 text-sm text-slate-600">{SITE.tagline}.</p>
           <p className="mt-3 text-sm text-slate-600">
             <a className="underline underline-offset-2 hover:text-teal-800" href={`mailto:${SITE.email}`}>
               {SITE.email}
@@ -64,14 +74,17 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-slate-200">
-        <div className="mx-auto max-w-6xl px-4 py-6 text-xs text-slate-500">
-          <p>
-            {SITE.name} provides free educational calculators. Results are estimates only and are not
-            financial, tax, legal or investment advice.
-          </p>
-          <p className="mt-2">
-            © {new Date().getFullYear()} {SITE.name}. All rights reserved.
-          </p>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-4 px-4 py-6 text-xs text-slate-500">
+          <div>
+            <p>
+              {SITE.name} provides free educational calculators. Results are estimates only and are
+              not financial, tax, legal or investment advice.
+            </p>
+            <p className="mt-2">
+              © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+            </p>
+          </div>
+          <OnlineCounter />
         </div>
       </div>
     </footer>

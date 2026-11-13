@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,19 +22,20 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
         <Link
           href="/"
-          className="flex items-center gap-2 text-lg font-semibold text-teal-900"
+          className="flex items-center"
           aria-label={`${SITE.name} home`}
         >
-          <span
-            aria-hidden="true"
-            className="grid h-8 w-8 place-items-center rounded-md bg-teal-800 text-sm font-bold text-white"
-          >
-            {SITE.name.slice(0, 1)}
-          </span>
-          {SITE.name}
+          <Image
+            src="/logo.png"
+            alt={SITE.name}
+            width={1776}
+            height={608}
+            className="h-17 w-auto"
+            priority
+          />
         </Link>
 
         <nav aria-label="Main" className="hidden md:block">

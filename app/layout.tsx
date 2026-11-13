@@ -43,9 +43,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" },
   },
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-  },
+  // Favicon/apple-icon are auto-discovered from app/icon.png and app/apple-icon.png.
 } as Metadata;
 
 const websiteLd = {
