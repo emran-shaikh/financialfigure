@@ -4,6 +4,7 @@ import AdSlot from "@/components/AdSlot";
 import Breadcrumbs, { breadcrumbJsonLd } from "@/components/Breadcrumbs";
 import Disclaimer from "@/components/Disclaimer";
 import FaqSection, { faqJsonLd, type FaqItem } from "@/components/FaqSection";
+import QuickCalculator from "@/components/QuickCalculator";
 import { getCalculator, getCategory, relatedCalculators } from "@/lib/calculators";
 import { absoluteUrl, SITE } from "@/lib/site";
 
@@ -61,7 +62,7 @@ export default function CalculatorLayout({
   };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8">
+    <main className="mx-auto max-w-7xl px-4 py-8 xl:pr-72">
       <Breadcrumbs crumbs={crumbs} />
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
@@ -117,6 +118,7 @@ export default function CalculatorLayout({
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }} />
+      <QuickCalculator />
     </main>
   );
 }

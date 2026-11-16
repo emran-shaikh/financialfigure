@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/site";
 
 export interface Crumb {
   href: string;
@@ -13,7 +14,7 @@ export function breadcrumbJsonLd(crumbs: Crumb[]) {
       "@type": "ListItem",
       position: i + 1,
       name: c.label,
-      item: c.href,
+      item: absoluteUrl(c.href),
     })),
   };
 }

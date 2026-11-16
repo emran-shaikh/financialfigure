@@ -22,7 +22,7 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
         <Link
           href="/"
           className="flex items-center"
@@ -33,7 +33,7 @@ export default function SiteHeader() {
             alt={SITE.name}
             width={1776}
             height={608}
-            className="h-17 w-auto"
+            className="h-14 w-auto"
             priority
           />
         </Link>
@@ -88,7 +88,7 @@ export default function SiteHeader() {
 
       {open && (
         <nav id="mobile-menu" aria-label="Mobile" className="border-t border-slate-200 md:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-4 py-2">
+          <ul className="mx-auto flex max-w-7xl flex-col px-4 py-2">
             {[...NAV_LINKS, { href: "/calculators", label: "All calculators" }].map((link) => (
               <li key={link.href}>
                 <Link

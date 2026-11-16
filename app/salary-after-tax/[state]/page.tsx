@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import PaycheckCalculator from "@/components/PaycheckCalculator";
+import QuickCalculator from "@/components/QuickCalculator";
+import { pageMetadata } from "@/lib/metadata";
 import { STATES_2026, getState } from "@/lib/tax/states2026";
 import { calculatePaycheck } from "@/lib/tax/paycheck";
 
@@ -10,11 +12,11 @@ export const generateStaticParams = () => STATES_2026.map((s) => ({ state: s.slu
 
 export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
   const st = getState((await params).state)!;
-  return {
-    title: `${st.name} Paycheck Calculator 2026: Salary After Tax`,
-    description: `See your take-home pay in ${st.name} for 2026. Includes federal tax, Social Security, Medicare and ${st.none ? "no state income tax on wages" : "state income tax"}.`,
-    alternates: { canonical: `/salary-after-tax/${st.slug}` },
-  };
+  return pageMetadata({
+    title: `${st.name} Paycheck Calculator`,
+    description: `Estimate your 2026 ${st.name} take-home pay with this salary after tax calculator. Includes federal tax, Social Security, Medicare${st.none ? " and no state income tax on wages" : " and state income tax"}.`,
+    path: `/salary-after-tax/${st.slug}`,
+  });
 }
 
 const usd = (n: number) => n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -43,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ state: string
     mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10 text-slate-900">
+    <main className="mx-auto max-w-7xl px-4 py-10 text-slate-900 xl:pr-72">
       <h1 className="text-3xl font-semibold">{st.name} paycheck calculator (2026)</h1>
       <p className="mt-2 max-w-prose text-slate-600">{describe(st.slug)}</p>
       <div className="mt-8"><PaycheckCalculator initialState={st.slug} /></div>
@@ -80,6 +82,7 @@ export default async function Page({ params }: { params: Promise<{ state: string
         </ul>
       </nav>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <QuickCalculator />
     </main>
   );
 }
