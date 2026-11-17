@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   const st = getState((await params).state)!;
   return pageMetadata({
     title: `${st.name} Paycheck Calculator`,
-    description: `Estimate your 2026 ${st.name} take-home pay with this salary after tax calculator. Includes federal tax, Social Security, Medicare${st.none ? " and no state income tax on wages" : " and state income tax"}.`,
+    description: `Estimate 2026 ${st.name} take-home pay after federal income tax, Social Security and Medicare${st.none ? "; the state does not tax wages" : ", plus state income tax"}.`,
     path: `/salary-after-tax/${st.slug}`,
   });
 }

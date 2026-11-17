@@ -38,7 +38,7 @@ defaults and simply renders no ads or analytics when keys are absent.
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_NAME` | Display name used in the header, footer and schema. |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin, no trailing slash. Used for canonicals, OG tags and the sitemap. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin. Used for canonicals, OG tags and the sitemap; the Financial Figure apex host is normalized to `www` because it redirects there. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Public contact address shown on `/contact` and legal pages. |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | AdSense publisher ID (`ca-pub-...`). No ads render when unset. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (`G-...`). No analytics loads when unset. |
@@ -114,8 +114,10 @@ The site is fully static and can be deployed anywhere that runs Next.js.
 - Framework preset: Next.js. Build command `npm run build`.
 - Set the same environment variables in the Pages dashboard.
 
-After deploying, set `NEXT_PUBLIC_SITE_URL` to the real domain so canonical URLs
-and the sitemap are correct, then submit `/sitemap.xml` in Google Search Console.
+After deploying, set `NEXT_PUBLIC_SITE_URL` to the canonical domain (use
+`https://www.financialfigure.com` for this site) so canonical URLs, robots.txt
+and the sitemap use the final, non-redirecting host. Then submit `/sitemap.xml`
+in Google Search Console.
 
 See `CHECKLIST.md` for the manual launch steps and `DATA_REVIEW.md` for the
 figures to verify and the yearly tax-data update guide.

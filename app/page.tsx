@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 export const metadata = {
   title: `${SITE.name} — Free US Finance Calculators`,
   description:
-    "Free US finance calculators for mortgage payments, take-home pay in all 50 states, auto and student loans, debt payoff and investment growth. No sign-up, no data collected.",
+    "Free US finance calculators for mortgage payments, take-home pay, loans, debt payoff and investing. No sign-up or personal data collected.",
   alternates: { canonical: "/" },
 };
 

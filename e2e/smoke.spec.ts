@@ -52,8 +52,8 @@ test.describe("smoke", () => {
     expect(breadcrumb?.itemListElement?.length).toBeGreaterThan(0);
     expect(
       breadcrumb?.itemListElement?.every((item) =>
-        item.item.startsWith("https://financialfigure.com/") ||
-        item.item === "https://financialfigure.com",
+        item.item.startsWith("https://www.financialfigure.com/") ||
+        item.item === "https://www.financialfigure.com",
       ),
     ).toBe(true);
   });
@@ -80,7 +80,7 @@ test.describe("smoke", () => {
     await expect(page).toHaveTitle("California Paycheck Calculator | Financial Figure");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      "https://financialfigure.com/salary-after-tax/california",
+      "https://www.financialfigure.com/salary-after-tax/california",
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       "content",
@@ -94,7 +94,7 @@ test.describe("smoke", () => {
   test("robots.txt points to the sitemap", async ({ request }) => {
     const res = await request.get("/robots.txt");
     expect(res.ok()).toBeTruthy();
-    expect(await res.text()).toContain("Sitemap:");
+    expect(await res.text()).toContain("Sitemap: https://www.financialfigure.com/sitemap.xml");
   });
 
   test("sitemap.xml lists calculator and state URLs", async ({ request }) => {
@@ -103,5 +103,12 @@ test.describe("smoke", () => {
     const xml = await res.text();
     expect(xml).toContain("/mortgage-calculator");
     expect(xml).toContain("/salary-after-tax/california");
+    expect(
+      [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].every(
+        ([, url]) =>
+          url.startsWith("https://www.financialfigure.com/") ||
+          url === "https://www.financialfigure.com",
+      ),
+    ).toBe(true);
   });
 });

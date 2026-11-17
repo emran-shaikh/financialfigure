@@ -8,11 +8,19 @@
 
 const env = process.env;
 
+function canonicalOrigin(): string {
+  const url = new URL(env.NEXT_PUBLIC_SITE_URL || "https://www.financialfigure.com");
+  if (url.hostname === "financialfigure.com") {
+    url.hostname = "www.financialfigure.com";
+  }
+  return url.origin;
+}
+
 export const SITE = {
   /** Display name used in the header, footer, metadata and schema. */
   name: env.NEXT_PUBLIC_SITE_NAME || "Financial Figure",
-  /** Canonical origin, no trailing slash. Override with NEXT_PUBLIC_SITE_URL. */
-  url: (env.NEXT_PUBLIC_SITE_URL || "https://financialfigure.com").replace(/\/$/, ""),
+  /** Canonical origin; the apex domain redirects to www. */
+  url: canonicalOrigin(),
   /**
    * Public contact address shown on the legal pages. The /contact page uses a
    * form as the primary channel; this address is the formal postal/electronic

@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
-    "Report a data error, suggest a calculator or send general feedback using the contact form.",
+    "Contact Financial Figure with calculator feedback, data corrections, questions or suggestions. Send a message using our contact form.",
   path: "/contact",
 });
 

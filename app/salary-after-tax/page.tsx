@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Paycheck Calculator by State (2026)",
   description:
-    "Choose your state to see take-home pay for 2026, including federal income tax, Social Security, Medicare and state income tax for all 50 states and Washington DC.",
+    "Estimate 2026 take-home pay in all 50 states and DC, with federal income tax, Social Security, Medicare and state income tax.",
   path: "/salary-after-tax",
 });
 
