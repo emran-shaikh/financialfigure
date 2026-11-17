@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How this site handles data: cookies, Google AdSense advertising, analytics, your choices and how to opt out of personalised advertising.",
+    "How cookies, Google AdSense, Google Analytics and Microsoft Clarity use data, plus your privacy choices and opt-out options.",
   path: "/privacy-policy",
 });
 
@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
   return (
     <PageShell
       title="Privacy policy"
-      updated="2026-11-12"
+      updated="2026-11-17"
       crumbs={[{ href: "/privacy-policy", label: "Privacy Policy" }]}
       intro={
         <p>
@@ -100,10 +100,21 @@ export default function PrivacyPolicyPage() {
 
       <h2>Analytics</h2>
       <p>
-        We measure aggregate traffic — which pages are visited and roughly where visitors come from —
-        to work out which calculators are useful. If analytics is enabled it loads only after you
-        consent, and it is configured not to store full IP addresses. Aggregate reports do not identify
-        you personally.
+        We measure aggregate traffic — which pages are visited and roughly where visitors come from
+        — to work out which calculators are useful. We use Google Analytics and Microsoft Clarity.
+        Clarity records usage and interaction data, including session replays and heatmaps, to help
+        us understand how the site is used. Analytics tools load only while analytics is allowed in
+        your consent choice. You can turn analytics off with &ldquo;Essential only&rdquo; in the
+        consent banner; Clarity is then notified to stop tracking and clear its cookies. Learn more
+        in{" "}
+        <a
+          href="https://privacy.microsoft.com/privacystatement"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          Microsoft&apos;s Privacy Statement
+        </a>
+        .
       </p>
 
       <h2>What we do not do</h2>

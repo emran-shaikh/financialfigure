@@ -33,7 +33,9 @@ npm run dev                  # http://localhost:3000
 ### Environment variables
 
 Everything is optional for local development; the site runs with sensible
-defaults and simply renders no ads or analytics when keys are absent.
+defaults and renders no ads or Google Analytics when those IDs are absent.
+Microsoft Clarity is enabled for the configured site and follows the analytics
+consent choice.
 
 | Variable | Purpose |
 | --- | --- |

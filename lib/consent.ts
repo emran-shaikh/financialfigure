@@ -15,7 +15,7 @@
  *
  * Nothing here fakes or silently overrides a consent signal: an explicit
  * decline is honoured everywhere (`advertising: false` renders no ad units and
- * no AdSense personalisation, `analytics: false` loads no GA4).
+ * no AdSense personalisation, `analytics: false` loads no GA4 or Clarity).
  */
 
 import { useSyncExternalStore } from "react";
