@@ -33,9 +33,8 @@ npm run dev                  # http://localhost:3000
 ### Environment variables
 
 Everything is optional for local development; the site runs with sensible
-defaults and renders no ads or Google Analytics when those IDs are absent.
-Microsoft Clarity is enabled for the configured site and follows the analytics
-consent choice.
+defaults and renders no ads when the AdSense ID is absent. Google Tag Manager
+and Microsoft Clarity follow the analytics consent choice.
 
 | Variable | Purpose |
 | --- | --- |
@@ -43,7 +42,6 @@ consent choice.
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin. Used for canonicals, OG tags and the sitemap; the Financial Figure apex host is normalized to `www` because it redirects there. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Public contact address shown on `/contact` and legal pages. |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | AdSense publisher ID (`ca-pub-...`). No ads render when unset. |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (`G-...`). No analytics loads when unset. |
 | `NEXT_PUBLIC_CMP_ID` | Google-certified consent management platform ID. See `CHECKLIST.md`. |
 
 ## Scripts

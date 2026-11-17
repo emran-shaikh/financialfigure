@@ -24,8 +24,8 @@ credential or a business decision that only the site owner can supply.
 - [x] Schema: WebSite, BreadcrumbList, FAQPage, WebApplication.
 - [x] Breadcrumb UI + "People also use" internal links on every calculator.
 - [x] `<AdSlot>` with reserved min-height (zero CLS), max 3 slots/page.
-- [x] AdSense + GA4 loaded **after consent only**, non-blocking, and rendered
-      only when their env vars are set. Nothing loads if they are unset.
+- [x] AdSense respects advertising consent, and Google Tag Manager and Clarity
+      respect analytics consent; both analytics tags load only when allowed.
 - [x] Consent banner for EEA/UK/Switzerland visitors + `applyCmpDecision()`
       integration point for a Google-certified CMP.
 - [x] `public/ads.txt` placeholder, `public/favicon.svg`.
@@ -42,9 +42,8 @@ credential or a business decision that only the site owner can supply.
 - [ ] Create a **Google AdSense** account and get the publisher ID
       (`ca-pub-XXXXXXXXXXXXXXXX`).
 - [ ] Create a **Google Search Console** property for the domain.
-- [ ] Create a **Google Analytics 4** property and copy the measurement ID
-      (`G-XXXXXXXXXX`) — or decide to use a privacy-friendly alternative and
-      replace the GA4 block in `components/ConsentScripts.tsx`.
+- [ ] Configure a **Google Analytics 4** tag and page-view trigger in the
+      Google Tag Manager container (`GTM-PV6KPS2M`).
 - [ ] Buy / configure a **Google-certified CMP** (required for EEA/UK/Swiss
       traffic). AdSense will not serve personalised ads in those regions without
       one. Keep the CMP **CMP ID** for step 2.3.
@@ -61,7 +60,6 @@ secrets — never put a private key here.
 | `NEXT_PUBLIC_SITE_URL` | Yes | `https://www.yourdomain.com` | Canonical origin, no trailing slash. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Yes | `hello@yourdomain.com` | `/contact` + legal pages. |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | For ads | `ca-pub-1234567890123456` | No value → **no ads render at all**. |
-| `NEXT_PUBLIC_GA_ID` | Optional | `G-XXXXXXXXXX` | No value → no analytics loads. |
 | `NEXT_PUBLIC_CMP_ID` | For EEA/UK/CH | CMP's ID | Set → built-in banner stands down, CMP controls consent. |
 
 > Until `NEXT_PUBLIC_ADSENSE_CLIENT` is set the site renders **no ad code** and
@@ -72,7 +70,7 @@ secrets — never put a private key here.
 1. Add the CMP's `<script>` tags to `components/ConsentScripts.tsx` (there is a
    `TODO(CMP)` marker).
 2. In the CMP's consent callback, call `applyCmpDecision(advertising, analytics)`
-   from `lib/consent` so AdSense and GA4 obey the visitor's choice.
+   from `lib/consent` so AdSense, Google Tag Manager and Clarity obey the visitor's choice.
 3. Set `NEXT_PUBLIC_CMP_ID` so the fallback banner stands down.
 4. Do **not** soften, fake or auto-accept the consent signal.
 

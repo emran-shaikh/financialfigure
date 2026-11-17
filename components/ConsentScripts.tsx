@@ -5,13 +5,15 @@ import Script from "next/script";
 import { useConsent } from "@/lib/consent";
 
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GTM_ID = "GTM-PV6KPS2M";
 const CLARITY_ID = "zf2xtoowy8";
 
 type ClarityConsent = "granted" | "denied";
 
 declare global {
   interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
     clarity?: {
       (
         event: "consentv2",
@@ -30,21 +32,30 @@ declare global {
  *    the account, so this tag is intentionally *not* gated behind consent. It
  *    only loads the library; no ad unit is rendered unless advertising is
  *    allowed (see AdSlot) and the CMP governs personalisation for EEA/UK/CH.
- *  - **GA4 and Clarity** load only while analytics consent is allowed. Clarity
- *    receives the current consent signal before its tag is inserted, and is
- *    disabled if the visitor later chooses "Essential only".
+ *  - **Google Tag Manager and Clarity** load only while analytics consent is
+ *    allowed. GTM receives Google Consent Mode defaults before it loads;
+ *    Clarity receives its consent signal before its tag is inserted.
  *  - These tags load after interaction and never block the critical rendering
- *    path. AdSense and GA4 are omitted when their environment variables are unset.
+ *    path. AdSense is omitted when its environment variable is unset.
  *
  * TODO(CMP): If you buy a Google-certified CMP, set NEXT_PUBLIC_CMP_ID, load
  * the CMP's script here, and have its callback call `applyCmpDecision(...)`
- * from lib/consent so AdSense, GA4 and Clarity obey the visitor's choice. Do
+ * from lib/consent so AdSense, GTM and Clarity obey the visitor's choice. Do
  * not bypass or fake the consent signal.
  */
 export default function ConsentScripts() {
   const consent = useConsent();
 
   useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        ad_storage: consent.advertising ? "granted" : "denied",
+        analytics_storage: consent.analytics ? "granted" : "denied",
+        ad_user_data: consent.advertising ? "granted" : "denied",
+        ad_personalization: consent.advertising ? "granted" : "denied",
+      });
+    }
+
     if (typeof window.clarity !== "function") return;
 
     if (!consent.analytics) {
@@ -69,20 +80,24 @@ export default function ConsentScripts() {
         />
       )}
 
-      {GA_ID && consent.analytics && (
-        <>
-          <Script
-            id="ga4-lib"
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
+      {consent.analytics && (
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: '${consent.advertising ? "granted" : "denied"}',
+  analytics_storage: 'granted',
+  ad_user_data: '${consent.advertising ? "granted" : "denied"}',
+  ad_personalization: '${consent.advertising ? "granted" : "denied"}'
+});
 gtag('js', new Date());
-gtag('config', '${GA_ID}', { anonymize_ip: true });`}
-          </Script>
-        </>
+window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+(function(w,d,s,l,i){var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
       )}
 
       {consent.analytics && (

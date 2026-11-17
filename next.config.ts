@@ -3,9 +3,10 @@ import type { NextConfig } from "next";
 /**
  * Content Security Policy, delivered in **report-only** mode.
  *
- * It lists the origins AdSense, GA4 and Clarity need, so it can be promoted to
- * an enforcing `Content-Security-Policy` once the browser console shows no
- * violations in production. Report-only means it can never break these tags.
+ * It lists the origins AdSense, Google Tag Manager, GA4 and Clarity need, so it
+ * can be promoted to an enforcing `Content-Security-Policy` once the browser
+ * console shows no violations in production. Report-only means it cannot break
+ * these tags.
  */
 const CSP = [
   "default-src 'self'",
