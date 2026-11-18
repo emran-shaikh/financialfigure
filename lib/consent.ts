@@ -9,15 +9,16 @@
  *    site, ads can serve and revenue can be earned on first visit.
  *  - The visitor can turn both off in one click ("Essential only" in
  *    ConsentBanner), which persists and immediately removes ad units and
- *    updates Google Tag Manager and Clarity consent.
+ *    updates Google Tag Manager and Clarity consent and prevents analytics
+ *    tags, including Ahrefs, from loading.
  *  - When a Google-certified CMP is configured (see ConsentBanner /
  *    CHECKLIST.md) the CMP is the source of truth for EEA, UK and Switzerland
  *    traffic and calls `applyCmpDecision` with the visitor's real choice.
  *
  * Nothing here fakes or silently overrides a consent signal: an explicit
  * decline is honoured everywhere (`advertising: false` renders no ad units and
- * no AdSense personalisation, and `analytics: false` prevents GTM and Clarity
- * from tracking analytics.
+ * no AdSense personalisation, and `analytics: false` prevents GTM, Clarity
+ * and Ahrefs from tracking analytics.
  */
 
 import { useSyncExternalStore } from "react";

@@ -32,16 +32,16 @@ declare global {
  *    the account, so this tag is intentionally *not* gated behind consent. It
  *    only loads the library; no ad unit is rendered unless advertising is
  *    allowed (see AdSlot) and the CMP governs personalisation for EEA/UK/CH.
- *  - **Google Tag Manager and Clarity** load only while analytics consent is
- *    allowed. GTM receives Google Consent Mode defaults before it loads;
- *    Clarity receives its consent signal before its tag is inserted.
+ *  - **Google Tag Manager, Clarity and Ahrefs** load only while analytics
+ *    consent is allowed. GTM receives Google Consent Mode defaults before it
+ *    loads; Clarity receives its consent signal before its tag is inserted.
  *  - These tags load after interaction and never block the critical rendering
  *    path. AdSense is omitted when its environment variable is unset.
  *
  * TODO(CMP): If you buy a Google-certified CMP, set NEXT_PUBLIC_CMP_ID, load
  * the CMP's script here, and have its callback call `applyCmpDecision(...)`
- * from lib/consent so AdSense, GTM and Clarity obey the visitor's choice. Do
- * not bypass or fake the consent signal.
+ * from lib/consent so AdSense, GTM, Clarity and Ahrefs obey the visitor's
+ * choice. Do not bypass or fake the consent signal.
  */
 export default function ConsentScripts() {
   const consent = useConsent();
@@ -77,6 +77,15 @@ export default function ConsentScripts() {
           strategy="afterInteractive"
           crossOrigin="anonymous"
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+        />
+      )}
+
+      {consent.analytics && (
+        <Script
+          id="ahrefs-analytics"
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="IobViihp3gA/O6OGm1Pt7A"
+          strategy="afterInteractive"
         />
       )}
 

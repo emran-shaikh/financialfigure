@@ -33,8 +33,8 @@ npm run dev                  # http://localhost:3000
 ### Environment variables
 
 Everything is optional for local development; the site runs with sensible
-defaults and renders no ads when the AdSense ID is absent. Google Tag Manager
-and Microsoft Clarity follow the analytics consent choice.
+defaults and renders no ads when the AdSense ID is absent. Google Tag Manager,
+Microsoft Clarity and Ahrefs follow the analytics consent choice.
 
 | Variable | Purpose |
 | --- | --- |

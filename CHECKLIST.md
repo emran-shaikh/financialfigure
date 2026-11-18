@@ -24,8 +24,9 @@ credential or a business decision that only the site owner can supply.
 - [x] Schema: WebSite, BreadcrumbList, FAQPage, WebApplication.
 - [x] Breadcrumb UI + "People also use" internal links on every calculator.
 - [x] `<AdSlot>` with reserved min-height (zero CLS), max 3 slots/page.
-- [x] AdSense respects advertising consent, and Google Tag Manager and Clarity
-      respect analytics consent; both analytics tags load only when allowed.
+- [x] AdSense respects advertising consent, and Google Tag Manager, Clarity
+      and Ahrefs respect analytics consent; analytics tags load only when
+      allowed.
 - [x] Consent banner for EEA/UK/Switzerland visitors + `applyCmpDecision()`
       integration point for a Google-certified CMP.
 - [x] `public/ads.txt` placeholder, `public/favicon.svg`.
@@ -70,7 +71,8 @@ secrets — never put a private key here.
 1. Add the CMP's `<script>` tags to `components/ConsentScripts.tsx` (there is a
    `TODO(CMP)` marker).
 2. In the CMP's consent callback, call `applyCmpDecision(advertising, analytics)`
-   from `lib/consent` so AdSense, Google Tag Manager and Clarity obey the visitor's choice.
+   from `lib/consent` so AdSense, Google Tag Manager, Clarity and Ahrefs obey
+   the visitor's choice.
 3. Set `NEXT_PUBLIC_CMP_ID` so the fallback banner stands down.
 4. Do **not** soften, fake or auto-accept the consent signal.
 
