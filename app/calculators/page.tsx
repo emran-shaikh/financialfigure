@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import { CALCULATORS, CATEGORIES } from "@/lib/calculators";
 import { pageMetadata } from "@/lib/metadata";
+import { CALCULATORS as ALL_CALCULATORS } from "@/lib/calculators";
 
 export const metadata: Metadata = pageMetadata({
   title: "All Calculators",
@@ -16,11 +17,21 @@ export default function CalculatorsDirectory() {
     <PageShell
       title="All calculators"
       crumbs={[{ href: "/calculators", label: "All calculators" }]}
+      collection={{
+        path: "/calculators",
+        name: "All calculators",
+        description: "The full directory of free US finance calculators.",
+        items: ALL_CALCULATORS.map((calculator) => ({
+          name: calculator.title,
+          path: `/${calculator.slug}`,
+        })),
+      }}
       adSlotId="directory-footer"
       intro={
         <p>
-          {CALCULATORS.length} free calculators covering the money decisions most US households face.
-          Everything runs in your browser, with the formula and data sources printed on each page.
+          {CALCULATORS.length} free calculators covering the money decisions most US households
+          face. Everything runs in your browser, with the formula and data sources printed on each
+          page.
         </p>
       }
     >

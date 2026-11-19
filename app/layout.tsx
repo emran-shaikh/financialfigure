@@ -3,9 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "@/components/ConsentBanner";
 import ConsentScripts from "@/components/ConsentScripts";
+import JsonLd from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { SITE } from "@/lib/site";
+import { siteSchema } from "@/lib/structuredData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,11 +34,13 @@ export const metadata: Metadata = {
     url: SITE.url,
     title: `${SITE.name} — Free US Finance Calculators`,
     description: SITE.description,
+    images: [{ url: "/logo.png", width: 1776, height: 608, alt: `${SITE.name} logo` }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Free US Finance Calculators`,
     description: SITE.description,
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
@@ -46,22 +50,13 @@ export const metadata: Metadata = {
   // Favicon/apple-icon are auto-discovered from app/icon.png and app/apple-icon.png.
 } as Metadata;
 
-const websiteLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE.name,
-  url: SITE.url,
-  description: SITE.description,
-  inLanguage: "en-US",
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <body className="flex min-h-screen flex-col font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-teal-900 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-teal-900 focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>
@@ -72,10 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
         <ConsentBanner />
         <ConsentScripts />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
-        />
+        <JsonLd data={siteSchema} />
       </body>
     </html>
   );

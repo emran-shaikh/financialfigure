@@ -1,12 +1,14 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import AdSlot from "@/components/AdSlot";
-import Breadcrumbs, { breadcrumbJsonLd } from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Disclaimer from "@/components/Disclaimer";
 import FaqSection, { faqJsonLd, type FaqItem } from "@/components/FaqSection";
+import JsonLd from "@/components/JsonLd";
 import QuickCalculator from "@/components/QuickCalculator";
 import { getCalculator, getCategory, relatedCalculators } from "@/lib/calculators";
-import { absoluteUrl, SITE } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
+import { calculatorSchema } from "@/lib/structuredData";
 
 interface CalculatorLayoutProps {
   /** Slug from lib/calculators.ts. */
@@ -48,18 +50,16 @@ export default function CalculatorLayout({
     { href: `/${meta.slug}`, label: meta.navTitle },
   ];
 
-  const webAppLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
+  const calculatorLd = calculatorSchema({
+    path: `/${meta.slug}`,
     name: meta.title,
-    url: canonical,
-    applicationCategory: "FinanceApplication",
-    operatingSystem: "Any",
-    browserRequirements: "Requires JavaScript",
     description: meta.description,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isPartOf: { "@type": "WebSite", name: SITE.name, url: SITE.url },
-  };
+    crumbs: [
+      { path: "/", name: "Home" },
+      { path: category.href, name: category.name },
+      { path: `/${meta.slug}`, name: meta.navTitle },
+    ],
+  });
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 xl:pr-72">
@@ -84,7 +84,7 @@ export default function CalculatorLayout({
       {/* Ad slot 1: directly after the calculator results. Reserved height = no CLS. */}
       <AdSlot slotId="after-results" minHeight={280} />
 
-      <div className="max-w-prose space-y-6 text-slate-700 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:font-semibold [&_h3]:text-slate-900 [&_a]:text-teal-800 [&_a]:underline [&_a]:underline-offset-2 [&_li]:mt-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5">
+      <div className="max-w-prose space-y-6 text-slate-700 [&_a]:text-teal-800 [&_a]:underline [&_a]:underline-offset-2 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:font-semibold [&_h3]:text-slate-900 [&_li]:mt-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5">
         {content}
       </div>
 
@@ -112,12 +112,8 @@ export default function CalculatorLayout({
         </nav>
       )}
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd([{ href: "/", label: "Home" }, ...crumbs])) }}
-      />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }} />
+      <JsonLd data={calculatorLd} />
+      <JsonLd data={faqJsonLd(faqs)} />
       <QuickCalculator />
     </main>
   );

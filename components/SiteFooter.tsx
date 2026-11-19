@@ -3,11 +3,12 @@ import Link from "next/link";
 import OnlineCounter from "@/components/OnlineCounter";
 import { CALCULATORS, CATEGORIES } from "@/lib/calculators";
 import { FOOTER_LEGAL_LINKS, SITE } from "@/lib/site";
+import { STATES_2026 } from "@/lib/tax/states2026";
 
 export default function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <Link href="/" aria-label={`${SITE.name} home`}>
             <Image
@@ -15,29 +16,50 @@ export default function SiteFooter() {
               alt={SITE.name}
               width={1776}
               height={608}
+              sizes="164px"
               className="h-14 w-auto"
             />
           </Link>
           <p className="mt-3 text-sm text-slate-600">{SITE.tagline}.</p>
           <p className="mt-3 text-sm text-slate-600">
-            <a className="underline underline-offset-2 hover:text-teal-800" href={`mailto:${SITE.email}`}>
+            <a
+              className="underline underline-offset-2 hover:text-teal-800"
+              href={`mailto:${SITE.email}`}
+            >
               {SITE.email}
             </a>
           </p>
         </div>
 
         <nav aria-label="Calculators">
-          <h2 className="text-sm font-semibold text-slate-900">Popular calculators</h2>
+          <h2 className="text-sm font-semibold text-slate-900">All calculators</h2>
           <ul className="mt-3 space-y-2 text-sm">
-            {CALCULATORS.filter((c) => c.featured)
-              .slice(0, 6)
-              .map((c) => (
-                <li key={c.slug}>
-                  <Link className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline" href={`/${c.slug}`}>
-                    {c.navTitle}
-                  </Link>
-                </li>
-              ))}
+            {CALCULATORS.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                  href={`/${c.slug}`}
+                >
+                  {c.navTitle}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Paycheck by state">
+          <h2 className="text-sm font-semibold text-slate-900">Paycheck by state</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {STATES_2026.map((state) => (
+              <li key={state.slug}>
+                <Link
+                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                  href={`/salary-after-tax/${state.slug}`}
+                >
+                  {state.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -46,13 +68,19 @@ export default function SiteFooter() {
           <ul className="mt-3 space-y-2 text-sm">
             {CATEGORIES.map((c) => (
               <li key={c.id}>
-                <Link className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline" href={c.href}>
+                <Link
+                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                  href={c.href}
+                >
                   {c.name}
                 </Link>
               </li>
             ))}
             <li>
-              <Link className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline" href="/calculators">
+              <Link
+                className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                href="/calculators"
+              >
                 All calculators
               </Link>
             </li>
@@ -64,7 +92,10 @@ export default function SiteFooter() {
           <ul className="mt-3 space-y-2 text-sm">
             {FOOTER_LEGAL_LINKS.map((l) => (
               <li key={l.href}>
-                <Link className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline" href={l.href}>
+                <Link
+                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                  href={l.href}
+                >
                   {l.label}
                 </Link>
               </li>

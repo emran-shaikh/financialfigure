@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { getCalculator } from "./calculators";
 import { absoluteUrl, SITE } from "./site";
 
+const SOCIAL_IMAGE = {
+  url: "/logo.png",
+  width: 1776,
+  height: 608,
+  alt: `${SITE.name} logo`,
+};
+
 /**
  * Consistent metadata for calculator pages: unique title + description,
  * canonical URL, Open Graph and Twitter cards.
@@ -22,11 +29,13 @@ export function calculatorMetadata(slug: string): Metadata {
       locale: SITE.locale,
       title: `${meta.title} | ${SITE.name}`,
       description: meta.description,
+      images: [SOCIAL_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: `${meta.title} | ${SITE.name}`,
       description: meta.description,
+      images: [SOCIAL_IMAGE.url],
     },
   };
 }
@@ -53,11 +62,13 @@ export function pageMetadata({
       locale: SITE.locale,
       title: `${title} | ${SITE.name}`,
       description,
+      images: [SOCIAL_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | ${SITE.name}`,
       description,
+      images: [SOCIAL_IMAGE.url],
     },
   };
 }

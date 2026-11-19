@@ -23,16 +23,13 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">
-        <Link
-          href="/"
-          className="flex items-center"
-          aria-label={`${SITE.name} home`}
-        >
+        <Link href="/" className="flex items-center" aria-label={`${SITE.name} home`}>
           <Image
             src="/logo.png"
             alt={SITE.name}
             width={1776}
             height={608}
+            sizes="164px"
             className="h-14 w-auto"
             priority
           />

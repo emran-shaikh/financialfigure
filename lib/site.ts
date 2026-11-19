@@ -39,7 +39,7 @@ export const DISCLAIMER_SHORT =
 
 /** Top-level navigation shown in the header and the mobile menu. */
 export const NAV_LINKS = [
-  { href: "/mortgage-calculator", label: "Mortgage" },
+  { href: "/mortgages", label: "Mortgage" },
   { href: "/salary-after-tax", label: "Paycheck" },
   { href: "/loans", label: "Loans" },
   { href: "/saving-and-investing", label: "Saving & Investing" },

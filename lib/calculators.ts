@@ -20,8 +20,8 @@ export const CATEGORIES: Category[] = [
   {
     id: "mortgage",
     name: "Mortgage & home",
-    href: "/mortgage-calculator",
-    blurb: "Monthly payments, affordability, amortisation and refinancing.",
+    href: "/mortgages",
+    blurb: "Monthly payments, affordability, amortization and refinancing.",
   },
   {
     id: "paycheck",
@@ -69,7 +69,11 @@ export const CALCULATORS: CalculatorMeta[] = [
       "Estimate your monthly mortgage payment including principal, interest, property tax, insurance, PMI and HOA, plus the total interest over the life of the loan.",
     category: "mortgage",
     featured: true,
-    related: ["mortgage-affordability-calculator", "amortization-schedule", "refinance-break-even-calculator"],
+    related: [
+      "mortgage-affordability-calculator",
+      "amortization-schedule",
+      "refinance-break-even-calculator",
+    ],
   },
   {
     slug: "mortgage-affordability-calculator",
@@ -106,7 +110,11 @@ export const CALCULATORS: CalculatorMeta[] = [
     description:
       "Compare the true cost of renting and buying a home over any number of years, including closing costs, maintenance, taxes and appreciation.",
     category: "mortgage",
-    related: ["mortgage-calculator", "mortgage-affordability-calculator", "compound-interest-calculator"],
+    related: [
+      "mortgage-calculator",
+      "mortgage-affordability-calculator",
+      "compound-interest-calculator",
+    ],
   },
   {
     slug: "salary-after-tax",
@@ -117,7 +125,11 @@ export const CALCULATORS: CalculatorMeta[] = [
     category: "paycheck",
     featured: true,
     dataDriven: true,
-    related: ["hourly-to-salary-calculator", "bonus-tax-calculator", "self-employment-tax-calculator"],
+    related: [
+      "hourly-to-salary-calculator",
+      "bonus-tax-calculator",
+      "self-employment-tax-calculator",
+    ],
   },
   {
     slug: "hourly-to-salary-calculator",
@@ -158,7 +170,11 @@ export const CALCULATORS: CalculatorMeta[] = [
       "Calculate your monthly car payment with sales tax, trade-in value, dealer fees, down payment and the total cost of the loan.",
     category: "loans",
     featured: true,
-    related: ["amortization-schedule", "credit-card-payoff-calculator", "student-loan-payoff-calculator"],
+    related: [
+      "amortization-schedule",
+      "credit-card-payoff-calculator",
+      "student-loan-payoff-calculator",
+    ],
   },
   {
     slug: "student-loan-payoff-calculator",
@@ -186,7 +202,11 @@ export const CALCULATORS: CalculatorMeta[] = [
       "Compare the debt snowball and debt avalanche payoff methods side by side and see which clears your balances faster for less interest.",
     category: "loans",
     featured: true,
-    related: ["credit-card-payoff-calculator", "student-loan-payoff-calculator", "auto-loan-calculator"],
+    related: [
+      "credit-card-payoff-calculator",
+      "student-loan-payoff-calculator",
+      "auto-loan-calculator",
+    ],
   },
   {
     slug: "compound-interest-calculator",
@@ -207,7 +227,11 @@ export const CALCULATORS: CalculatorMeta[] = [
     category: "investing",
     featured: true,
     dataDriven: true,
-    related: ["roth-vs-traditional-ira-calculator", "compound-interest-calculator", "cagr-calculator"],
+    related: [
+      "roth-vs-traditional-ira-calculator",
+      "compound-interest-calculator",
+      "cagr-calculator",
+    ],
   },
   {
     slug: "roth-vs-traditional-ira-calculator",
@@ -235,7 +259,11 @@ export const CALCULATORS: CalculatorMeta[] = [
     description:
       "Calculate the compound annual growth rate of an investment from its starting value, ending value and holding period.",
     category: "investing",
-    related: ["roi-calculator", "compound-interest-calculator", "investments-vs-inflation-calculator"],
+    related: [
+      "roi-calculator",
+      "compound-interest-calculator",
+      "investments-vs-inflation-calculator",
+    ],
   },
   {
     slug: "roi-calculator",
@@ -244,7 +272,11 @@ export const CALCULATORS: CalculatorMeta[] = [
     description:
       "Calculate return on investment, annualised return and profit for any investment, including the effect of holding period.",
     category: "investing",
-    related: ["cagr-calculator", "compound-interest-calculator", "investments-vs-inflation-calculator"],
+    related: [
+      "cagr-calculator",
+      "compound-interest-calculator",
+      "investments-vs-inflation-calculator",
+    ],
   },
 ];
 
