@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import AdSlot from "@/components/AdSlot";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Disclaimer from "@/components/Disclaimer";
-import FaqSection, { faqJsonLd, type FaqItem } from "@/components/FaqSection";
+import FaqSection, { type FaqItem } from "@/components/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import QuickCalculator from "@/components/QuickCalculator";
 import { getCalculator, getCategory, relatedCalculators } from "@/lib/calculators";
@@ -59,6 +59,7 @@ export default function CalculatorLayout({
       { path: category.href, name: category.name },
       { path: `/${meta.slug}`, name: meta.navTitle },
     ],
+    faqs,
   });
 
   return (
@@ -113,7 +114,6 @@ export default function CalculatorLayout({
       )}
 
       <JsonLd data={calculatorLd} />
-      <JsonLd data={faqJsonLd(faqs)} />
       <QuickCalculator />
     </main>
   );

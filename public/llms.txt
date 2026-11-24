@@ -1,0 +1,53 @@
+# Financial Figure
+
+> Free, fast and private US finance calculators. Work out your mortgage payment, take-home pay in any state, loan payoff and investment growth — with formulas and assumptions explained.
+
+Financial Figure (https://www.financialfigure.com) is an educational finance platform providing client-side financial calculators for US consumers, savers, homebuyers, and employees. All calculations run locally in the user's browser, requiring no account creation, sign-up, or submission of private financial data.
+
+## Mortgage & Home Calculators
+
+- [Mortgage Calculator](https://www.financialfigure.com/mortgage-calculator): Estimate monthly mortgage payments including principal, interest, property tax, insurance, PMI and HOA, plus the total interest over the life of the loan.
+- [How Much House Can I Afford?](https://www.financialfigure.com/mortgage-affordability-calculator): Work out how much house you can afford from your income, debts and down payment using the 28/36 debt-to-income rule and lender limits.
+- [Amortization Schedule Calculator](https://www.financialfigure.com/amortization-schedule): Full month-by-month mortgage amortization schedule with extra payments and downloadable CSV schedules.
+- [Refinance Break-Even Calculator](https://www.financialfigure.com/refinance-break-even-calculator): Calculate how long it takes for mortgage refinance closing costs to pay for themselves and how much interest is saved.
+- [Rent vs Buy Calculator](https://www.financialfigure.com/rent-vs-buy-calculator): Compare the true cost of renting and buying a home over any number of years including closing costs, maintenance, taxes and appreciation.
+
+## Paycheck & Tax Calculators
+
+- [Paycheck Calculator by State (2026)](https://www.financialfigure.com/salary-after-tax): Estimate 2026 take-home pay in all 50 states and Washington DC with federal income tax, Social Security, Medicare, and state tax breakdowns.
+- [Hourly to Salary Calculator](https://www.financialfigure.com/hourly-to-salary-calculator): Convert an hourly wage to annual, monthly, and weekly pay, or convert salary back to an hourly rate with overtime examples.
+- [Self-Employment Tax Calculator](https://www.financialfigure.com/self-employment-tax-calculator): Estimate 1099 self-employment tax (Social Security and Medicare) plus federal income tax and quarterly estimated payments.
+- [Bonus Tax Calculator](https://www.financialfigure.com/bonus-tax-calculator): Compare net bonus withholding using the IRS flat 22% supplemental rate against the aggregate withholding method.
+
+## Loan & Debt Calculators
+
+- [Auto Loan Calculator](https://www.financialfigure.com/auto-loan-calculator): Calculate monthly car payments with sales tax, trade-in value, dealer fees, down payment, and total loan interest.
+- [Student Loan Payoff Calculator](https://www.financialfigure.com/student-loan-payoff-calculator): Work out monthly student loan payments, total interest, payoff date, and extra payment savings.
+- [Credit Card Payoff Calculator](https://www.financialfigure.com/credit-card-payoff-calculator): See how long it takes to clear a credit card balance and total interest paid at current minimum or fixed monthly payments.
+- [Debt Snowball vs Avalanche Calculator](https://www.financialfigure.com/debt-snowball-calculator): Compare the debt snowball and debt avalanche payoff methods side by side to see which clears debt faster with less interest.
+
+## Saving & Investing Calculators
+
+- [Compound Interest Calculator](https://www.financialfigure.com/compound-interest-calculator): Project investment growth with compound interest, regular monthly contributions, and flexible compounding frequencies.
+- [401(k) Growth Calculator](https://www.financialfigure.com/401k-calculator): Project retirement balances with employer matching, annual salary raises, and official 2026 IRS contribution caps.
+- [Roth vs Traditional IRA Calculator](https://www.financialfigure.com/roth-vs-traditional-ira-calculator): Compare Roth and traditional IRAs side by side to see which yields more after-tax income at retirement.
+- [Inflation Calculator](https://www.financialfigure.com/investments-vs-inflation-calculator): Measure the purchasing power erosion of cash over time and how much investments must earn to outpace inflation.
+- [CAGR Calculator](https://www.financialfigure.com/cagr-calculator): Calculate the compound annual growth rate of an investment from beginning value, ending value, and time horizon.
+- [ROI Calculator](https://www.financialfigure.com/roi-calculator): Calculate return on investment, annualized return, and total profit across holding periods.
+
+## Categories & Hubs
+
+- [Mortgage & Home](https://www.financialfigure.com/mortgages): Directory of home loans, refinancing, affordability, and amortization tools.
+- [Paycheck & Tax](https://www.financialfigure.com/salary-after-tax): State-by-state take-home pay and tax calculators.
+- [Loans & Debt](https://www.financialfigure.com/loans): Auto, student loan, credit card, and debt payoff calculators.
+- [Saving & Investing](https://www.financialfigure.com/saving-and-investing): Compound interest, retirement, and investment return calculators.
+- [All Calculators Directory](https://www.financialfigure.com/calculators): Complete directory of free calculators.
+
+## Information & Reference
+
+- [About](https://www.financialfigure.com/about): Background, principles, and development philosophy.
+- [Methodology](https://www.financialfigure.com/methodology): Formulas, assumptions, and primary source citations for all tools.
+- [Contact](https://www.financialfigure.com/contact): Contact form and support email.
+- [Privacy Policy](https://www.financialfigure.com/privacy-policy): Transparent disclosure of cookie usage, AdSense, analytics, and privacy choices.
+- [Terms of Use](https://www.financialfigure.com/terms): Terms governing website access and usage.
+- [Disclaimer](https://www.financialfigure.com/disclaimer): Educational estimation disclaimer.

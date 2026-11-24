@@ -3,10 +3,10 @@ import { getCalculator } from "./calculators";
 import { absoluteUrl, SITE } from "./site";
 
 const SOCIAL_IMAGE = {
-  url: "/logo.png",
-  width: 1776,
-  height: 608,
-  alt: `${SITE.name} logo`,
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: `${SITE.name}`,
 };
 
 /**

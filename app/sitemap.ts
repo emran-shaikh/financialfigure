@@ -20,6 +20,7 @@ type Entry = {
 
 const CORE_PAGES: Entry[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
+  { path: "/mortgages", priority: 0.9, changeFrequency: "weekly" },
   { path: "/calculators", priority: 0.9, changeFrequency: "weekly" },
   { path: "/salary-after-tax", priority: 0.9, changeFrequency: "weekly" },
   { path: "/loans", priority: 0.7, changeFrequency: "monthly" },

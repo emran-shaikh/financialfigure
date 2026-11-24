@@ -52,45 +52,63 @@ export function calculatorSchema({
   name,
   description,
   crumbs,
+  faqs,
 }: {
   path: string;
   name: string;
   description: string;
   crumbs: SchemaCrumb[];
+  faqs?: { q: string; a: string }[];
 }) {
   const url = absoluteUrl(path);
 
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name,
+      description,
+      inLanguage: "en-US",
+      isPartOf: { "@id": WEBSITE_ID },
+      publisher: { "@id": ORGANIZATION_ID },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+      mainEntity: { "@id": `${url}#app` },
+      ...(faqs && faqs.length > 0 ? { hasPart: [{ "@id": `${url}#faq` }] } : {}),
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${url}#app`,
+      name,
+      url,
+      description,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Any",
+      browserRequirements: "Requires JavaScript",
+      isAccessibleForFree: true,
+      inLanguage: "en-US",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      publisher: { "@id": ORGANIZATION_ID },
+    },
+    breadcrumbSchema(url, crumbs),
+  ];
+
+  if (faqs && faqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${url}#webpage`,
-        url,
-        name,
-        description,
-        inLanguage: "en-US",
-        isPartOf: { "@id": WEBSITE_ID },
-        publisher: { "@id": ORGANIZATION_ID },
-        breadcrumb: { "@id": `${url}#breadcrumb` },
-        mainEntity: { "@id": `${url}#app` },
-      },
-      {
-        "@type": "WebApplication",
-        "@id": `${url}#app`,
-        name,
-        url,
-        description,
-        applicationCategory: "FinanceApplication",
-        operatingSystem: "Any",
-        browserRequirements: "Requires JavaScript",
-        isAccessibleForFree: true,
-        inLanguage: "en-US",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        publisher: { "@id": ORGANIZATION_ID },
-      },
-      breadcrumbSchema(url, crumbs),
-    ],
+    "@graph": graph,
   };
 }
 

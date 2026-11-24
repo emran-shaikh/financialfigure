@@ -56,6 +56,9 @@ export const FOOTER_LEGAL_LINKS = [
 
 /** Absolute URL helper — always use this for canonicals, OG tags and sitemap entries. */
 export function absoluteUrl(path = "/"): string {
+  if (path === "/" || path === "") {
+    return `${SITE.url}/`;
+  }
   const clean = path.startsWith("/") ? path : `/${path}`;
-  return `${SITE.url}${clean === "/" ? "" : clean}`;
+  return `${SITE.url}${clean}`;
 }

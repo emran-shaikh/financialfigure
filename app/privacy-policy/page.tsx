@@ -75,13 +75,32 @@ export default function PrivacyPolicyPage() {
       <p>You can control or opt out of personalised advertising at any time:</p>
       <ul>
         <li>
-          Google Ads Settings — <a href="https://adssettings.google.com" rel="nofollow noopener noreferrer" target="_blank">adssettings.google.com</a>{" "}
+          Google My Ad Center —{" "}
+          <a
+            href="https://myadcenter.google.com/"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
+            myadcenter.google.com
+          </a>{" "}
           lets you turn off personalised ads from Google.
         </li>
         <li>
-          <a href="https://optout.aboutads.info" rel="nofollow noopener noreferrer" target="_blank">optout.aboutads.info</a>{" "}
+          <a
+            href="https://optout.aboutads.info/"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
+            optout.aboutads.info
+          </a>{" "}
           (Digital Advertising Alliance) and{" "}
-          <a href="https://optout.networkadvertising.org" rel="nofollow noopener noreferrer" target="_blank">optout.networkadvertising.org</a>{" "}
+          <a
+            href="https://optout.networkadvertising.org/"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
+            optout.networkadvertising.org
+          </a>{" "}
           (Network Advertising Initiative) let you opt out of interest-based advertising from
           participating companies.
         </li>
@@ -91,7 +110,11 @@ export default function PrivacyPolicyPage() {
         </li>
         <li>
           For information about how Google uses data from sites that use its services, see{" "}
-          <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener noreferrer" target="_blank">
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
             policies.google.com/technologies/partner-sites
           </a>
           .
@@ -108,7 +131,7 @@ export default function PrivacyPolicyPage() {
         consent banner; Clarity is then notified to stop tracking and clear its cookies. Learn more
         in{" "}
         <a
-          href="https://privacy.microsoft.com/privacystatement"
+          href="https://privacy.microsoft.com/en-us/privacystatement"
           rel="nofollow noopener noreferrer"
           target="_blank"
         >
