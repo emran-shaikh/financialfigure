@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import OnlineCounter from "@/components/OnlineCounter";
-import { CALCULATORS, CATEGORIES } from "@/lib/calculators";
+import { CATEGORIES, calculatorsByCategory } from "@/lib/calculators";
 import { FOOTER_LEGAL_LINKS, SITE } from "@/lib/site";
 import { STATES_2026 } from "@/lib/tax/states2026";
 
@@ -9,7 +9,7 @@ export default function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-slate-200 bg-white">
       {/* Primary footer navigation */}
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <Link href="/" aria-label={`${SITE.name} home`}>
             <Image
@@ -56,20 +56,85 @@ export default function SiteFooter() {
           </ul>
         </nav>
 
-        <nav aria-label="Calculators">
-          <h2 className="text-sm font-semibold text-slate-900">All calculators</h2>
-          <ul className="mt-3 space-y-2 text-sm">
-            {CALCULATORS.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
-                  href={`/${c.slug}`}
-                >
-                  {c.navTitle}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <nav aria-label="Calculators" className="sm:col-span-2 lg:col-span-2">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-sm font-semibold text-slate-900">All calculators</h2>
+            <Link
+              href="/calculators"
+              className="text-xs font-medium text-teal-800 hover:underline"
+            >
+              Directory &rarr;
+            </Link>
+          </div>
+          <div className="mt-3 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 text-sm">
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Mortgage &amp; Home
+              </h3>
+              <ul className="mt-2 space-y-1.5">
+                {calculatorsByCategory("mortgage").map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                      href={`/${c.slug}`}
+                    >
+                      {c.navTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="mt-5 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Paycheck &amp; Tax
+              </h3>
+              <ul className="mt-2 space-y-1.5">
+                {calculatorsByCategory("paycheck").map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                      href={`/${c.slug}`}
+                    >
+                      {c.navTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Loans &amp; Debt
+              </h3>
+              <ul className="mt-2 space-y-1.5">
+                {calculatorsByCategory("loans").map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                      href={`/${c.slug}`}
+                    >
+                      {c.navTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="mt-5 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Saving &amp; Investing
+              </h3>
+              <ul className="mt-2 space-y-1.5">
+                {calculatorsByCategory("investing").map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                      href={`/${c.slug}`}
+                    >
+                      {c.navTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </nav>
 
         <nav aria-label="Legal and company">
