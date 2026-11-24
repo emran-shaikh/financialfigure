@@ -6,6 +6,7 @@ import QuickCalculator from "@/components/QuickCalculator";
 import { pageMetadata } from "@/lib/metadata";
 import { STATES_2026, getState } from "@/lib/tax/states2026";
 import { calculatePaycheck } from "@/lib/tax/paycheck";
+import { getComparisonStates } from "@/lib/tax/comparisons";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => STATES_2026.map((s) => ({ state: s.slug }));
@@ -32,6 +33,7 @@ function describe(slug: string) {
 
 export default async function Page({ params }: { params: Promise<{ state: string }> }) {
   const st = getState((await params).state)!;
+  const comparisons = getComparisonStates(st.slug);
   const rows = SALARIES.map((g) => ({
     g, r: calculatePaycheck({ grossAnnual: g, filing: "single", preTaxAnnual: 0, periodsPerYear: 26, state: st }),
   }));
@@ -66,6 +68,58 @@ export default async function Page({ params }: { params: Promise<{ state: string
           </table>
         </div>
       </section>
+
+      {/* Relocation & Neighboring State Comparisons */}
+      {comparisons.length > 0 && (
+        <section className="mt-12 max-w-prose">
+          <h2 className="text-xl font-semibold">
+            Comparing states? Take-home pay on a $100k salary
+          </h2>
+          <p className="mt-1 text-sm text-slate-600">
+            See how after-tax earnings in {st.name} compare with popular relocation destinations and nearby states (single filer, no pre-tax deductions).
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {comparisons.map((comp) => {
+              const isHigher = comp.netDiffAnnual > 0;
+              const isSame = comp.netDiffAnnual === 0;
+              return (
+                <Link
+                  key={comp.state.slug}
+                  href={`/salary-after-tax/${comp.state.slug}`}
+                  className="flex flex-col justify-between rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-teal-700 hover:shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-teal-900">{comp.state.name}</span>
+                    <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-600">
+                      {comp.taxSummary}
+                    </span>
+                  </div>
+                  <div className="mt-3 flex items-baseline justify-between text-sm">
+                    <span className="text-slate-500">Take-home:</span>
+                    <span className="font-semibold text-slate-900">{usd(comp.benchmarkNet)}</span>
+                  </div>
+                  <div className="mt-1 flex items-baseline justify-between text-xs">
+                    <span className="text-slate-500">Difference:</span>
+                    <span
+                      className={`font-medium ${
+                        isHigher
+                          ? "text-emerald-700"
+                          : isSame
+                          ? "text-slate-600"
+                          : "text-amber-700"
+                      }`}
+                    >
+                      {isSame
+                        ? "Same take-home"
+                        : `${isHigher ? "+" : ""}${usd(comp.netDiffAnnual)}/yr (${isHigher ? "+" : ""}${usd(comp.netDiffMonthly)}/mo)`}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <section className="mt-10 max-w-prose space-y-6">
         <h2 className="text-xl font-semibold">Common questions</h2>

@@ -1,11 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import OnlineCounter from "@/components/OnlineCounter";
 import { CATEGORIES, calculatorsByCategory } from "@/lib/calculators";
 import { FOOTER_LEGAL_LINKS, SITE } from "@/lib/site";
 import { STATES_2026 } from "@/lib/tax/states2026";
 
 export default function SiteFooter() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/embed")) {
+    return null;
+  }
+
   return (
     <footer className="mt-16 border-t border-slate-200 bg-white">
       {/* Primary footer navigation */}

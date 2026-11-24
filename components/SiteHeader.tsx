@@ -20,6 +20,10 @@ export default function SiteHeader() {
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
+  if (pathname?.startsWith("/embed")) {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2">

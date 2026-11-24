@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import AdSlot from "@/components/AdSlot";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Disclaimer from "@/components/Disclaimer";
+import EmbedModal from "@/components/EmbedModal";
 import FaqSection, { type FaqItem } from "@/components/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import QuickCalculator from "@/components/QuickCalculator";
@@ -66,15 +67,38 @@ export default function CalculatorLayout({
     <main className="mx-auto max-w-7xl px-4 py-8 xl:pr-72">
       <Breadcrumbs crumbs={crumbs} />
 
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-        {meta.title}
-      </h1>
+      <div className="mt-4 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            {meta.title}
+          </h1>
 
-      {meta.dataDriven && updated && (
-        <p className="mt-2 text-sm text-slate-500">
-          Updated <time dateTime={updated}>{updated}</time> · 2026 tax year data
-        </p>
-      )}
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+            <span className="inline-flex items-center gap-1 font-medium text-emerald-700">
+              <svg className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Editorial Verified
+            </span>
+            <span>·</span>
+            {meta.dataDriven && updated ? (
+              <span>
+                Updated <time dateTime={updated}>{updated}</time> (2026 tax year)
+              </span>
+            ) : (
+              <span>2026 standard formula model</span>
+            )}
+          </div>
+        </div>
+
+        <div className="pt-1">
+          <EmbedModal slug={meta.slug} title={meta.title} />
+        </div>
+      </div>
 
       <div className="prose-slate mt-4 max-w-prose text-slate-600">{intro}</div>
 

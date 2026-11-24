@@ -34,6 +34,12 @@ export const siteSchema = {
         height: 608,
       },
       email: SITE.email,
+      knowsAbout: [
+        "US Individual Income Taxation",
+        "Mortgage Financing and Amortization",
+        "Personal Finance and Debt Payoff",
+        "Compound Interest and Retirement Accounts",
+      ],
     },
     {
       "@type": "WebSite",
@@ -72,8 +78,19 @@ export function calculatorSchema({
       inLanguage: "en-US",
       isPartOf: { "@id": WEBSITE_ID },
       publisher: { "@id": ORGANIZATION_ID },
+      author: { "@id": ORGANIZATION_ID },
+      reviewedBy: {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        name: `${SITE.name} Editorial Board`,
+      },
       breadcrumb: { "@id": `${url}#breadcrumb` },
       mainEntity: { "@id": `${url}#app` },
+      dateModified: "2026-11-24",
+      audience: {
+        "@type": "Audience",
+        audienceType: "US Taxpayers, Homebuyers, Borrowers, and Savers",
+      },
       ...(faqs && faqs.length > 0 ? { hasPart: [{ "@id": `${url}#faq` }] } : {}),
     },
     {

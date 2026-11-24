@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { setConsent, useConsent } from "@/lib/consent";
 
 const CMP_ID = process.env.NEXT_PUBLIC_CMP_ID;
@@ -19,9 +20,11 @@ const CMP_ID = process.env.NEXT_PUBLIC_CMP_ID;
  */
 export default function ConsentBanner() {
   const consent = useConsent();
+  const pathname = usePathname();
 
   if (CMP_ID) return null;
   if (consent.decided) return null;
+  if (pathname?.startsWith("/embed")) return null;
 
   return (
     <div
