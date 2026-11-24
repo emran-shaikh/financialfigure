@@ -42,12 +42,22 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: ["/og-image.png"],
   },
-  robots: {
+    robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" },
   },
-  // Favicon/apple-icon are auto-discovered from app/icon.png and app/apple-icon.png.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 } as Metadata;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
