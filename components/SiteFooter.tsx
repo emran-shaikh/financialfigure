@@ -8,7 +8,8 @@ import { STATES_2026 } from "@/lib/tax/states2026";
 export default function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-5">
+      {/* Primary footer navigation */}
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Link href="/" aria-label={`${SITE.name} home`}>
             <Image
@@ -30,38 +31,6 @@ export default function SiteFooter() {
             </a>
           </p>
         </div>
-
-        <nav aria-label="Calculators">
-          <h2 className="text-sm font-semibold text-slate-900">All calculators</h2>
-          <ul className="mt-3 space-y-2 text-sm">
-            {CALCULATORS.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
-                  href={`/${c.slug}`}
-                >
-                  {c.navTitle}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <nav aria-label="Paycheck by state">
-          <h2 className="text-sm font-semibold text-slate-900">Paycheck by state</h2>
-          <ul className="mt-3 space-y-2 text-sm">
-            {STATES_2026.map((state) => (
-              <li key={state.slug}>
-                <Link
-                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
-                  href={`/salary-after-tax/${state.slug}`}
-                >
-                  {state.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
 
         <nav aria-label="Categories">
           <h2 className="text-sm font-semibold text-slate-900">Categories</h2>
@@ -87,6 +56,22 @@ export default function SiteFooter() {
           </ul>
         </nav>
 
+        <nav aria-label="Calculators">
+          <h2 className="text-sm font-semibold text-slate-900">All calculators</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {CALCULATORS.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                  href={`/${c.slug}`}
+                >
+                  {c.navTitle}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <nav aria-label="Legal and company">
           <h2 className="text-sm font-semibold text-slate-900">Site</h2>
           <ul className="mt-3 space-y-2 text-sm">
@@ -102,6 +87,40 @@ export default function SiteFooter() {
             ))}
           </ul>
         </nav>
+      </div>
+
+      {/* Paycheck by State (Dedicated balanced multi-column directory) */}
+      <div className="border-t border-slate-100 bg-slate-50/60 py-10">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="text-sm font-semibold text-slate-900">
+              Paycheck Calculator by State (2026)
+            </h2>
+            <Link
+              href="/salary-after-tax"
+              className="text-xs font-medium text-teal-800 hover:underline"
+            >
+              View national overview &amp; map &rarr;
+            </Link>
+          </div>
+          <p className="mt-1 text-xs text-slate-500">
+            Compare take-home pay with 2026 federal income tax, Social Security, Medicare, and state tax withholding.
+          </p>
+          <nav aria-label="Paycheck by state" className="mt-5">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {STATES_2026.map((state) => (
+                <li key={state.slug}>
+                  <Link
+                    className="text-slate-600 underline-offset-2 hover:text-teal-800 hover:underline"
+                    href={`/salary-after-tax/${state.slug}`}
+                  >
+                    {state.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
 
       <div className="border-t border-slate-200">
