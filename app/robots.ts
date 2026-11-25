@@ -9,6 +9,14 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
+      {
+        userAgent: "Googlebot-Image",
+        allow: "/",
+      },
+      {
+        userAgent: "Googlebot-Favicons",
+        allow: "/",
+      },
     ],
     sitemap: `${SITE.url}/sitemap.xml`,
     host: new URL(SITE.url).host,

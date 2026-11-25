@@ -10,7 +10,7 @@ import { absoluteUrl } from "@/lib/site";
  * `lastModified` uses a single reviewed date rather than the build time so the
  * file stays stable between deploys (search engines dislike noisy lastmod).
  */
-const LAST_UPDATED = new Date("2026-11-12");
+const LAST_UPDATED = new Date("2026-11-25");
 
 type Entry = {
   path: string;
